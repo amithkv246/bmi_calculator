@@ -1,11 +1,14 @@
 import React from 'react';
 import Heading1 from '../components/heading1';
 import Button from '../components/button';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 function ResultPage() {
   const navigate = useNavigate();
   const handlenavigate = () => navigate(-1);
+  const location= useLocation();
+  const {value} = location.state || {};
+  console.log( value )
 
   return (
     <>
@@ -15,7 +18,7 @@ function ResultPage() {
           <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row" style={{ minHeight: "20rem", backgroundColor: "#fdfdfd", placeItems: "center" }}>
             <div className='col-12 p-1'><div className='btn btn-light' onClick={handlenavigate}><i class="fa-solid fa-angle-left fa-xl" style={{ color: "#808488" }}></i></div></div>
             <div className="col-12"><Heading1 value={"Your BMI Result"} className='fs-3 fw-bold text-secondary text-center' /></div>
-            <div className='col-12'><p style={{ textAlign: "justify" }}>Your body mass index according to metric system is <span></span> .</p></div>
+            <div className='col-12'><p style={{ textAlign: "justify" }}>Your body mass index according to metric system is <span className='fs-5 fw-bold text-warning' >{value || "no value passed"}</span>.</p></div>
 
             <div className='col-4'><p className='text-start'>&lt;18.5</p></div>
             <div className='col-1'><p className='text-center'>-</p></div>

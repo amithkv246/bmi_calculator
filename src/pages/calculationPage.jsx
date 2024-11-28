@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Heading1 from '../components/heading1';
 import Button from '../components/button';
 import Input from '../components/input';
@@ -6,8 +6,41 @@ import Text from '../components/text';
 import { useNavigate } from 'react-router';
 
 function CalculationPage() {
+  const [weight, setWeight] = useState();
+  const [height, setHeight] = useState();
+  const [bmi, setBmi] = useState(0);
+
+  function handleClear() {
+    setWeight("");
+    setHeight("");
+  }
+
+  function handlebmicalculation() {
+    let x = eval(weight / ((height / 100) ** 2));
+    if (height > 0) {
+      if (weight > 0) {
+        setBmi(x.toFixed(2));
+      } else {
+        alert("Weight must be greater than 0.")
+      }
+    }
+    else {
+      alert("Height must be greater than 0.")
+    }
+  }
+
+  const handleCalculationAndNavigate = () => {
+    handlebmicalculation();
+  }
+
   const navigate = useNavigate();
-  const handleNavigate = () => navigate("/result");
+  useEffect(() => {
+    if (bmi) {
+      navigate("/result", { state: { value: bmi } });
+    } else (
+      console.log(bmi + "bmi is not set")
+    )
+  }, [bmi])
 
   return (
     <>
@@ -32,14 +65,14 @@ function CalculationPage() {
 
             <div className="col-4 pt-2"><Text value={"Weight"} /></div>
             <div className="col-1 pt-2"><Text value={':'} /></div>
-            <div className="col-7"><Input className="form-control" type="number" /></div>
+            <div className="col-7"><Input className="form-control" type="number" placeholder={"kg"} value={weight} onChange={(e) => setWeight(parseFloat(e.target.value))} /></div>
 
             <div className="col-4 pt-2"><Text value={"Height"} /></div>
             <div className="col-1 pt-2"><Text value={':'} /></div>
-            <div className="col-7"><Input className="form-control" type="number" /></div>
+            <div className="col-7"><Input className="form-control" type="number" placeholder={"cm"} value={height} onChange={(e) => setHeight(parseFloat(e.target.value))} /></div>
 
-            <div className="col-6 text-center"><Button value={"Calculate"} onClick={handleNavigate} /></div>
-            <div className="col-6 text-center"><Button value={"Clear"} /></div>
+            <div className="col-6 text-center"><Button value={"Calculate"} onClick={handleCalculationAndNavigate} /></div>
+            <div className="col-6 text-center"><Button value={"Clear"} onClick={handleClear} /></div>
           </div>
 
         </div>
