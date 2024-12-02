@@ -46,7 +46,7 @@ function CalculationPage() {
     <>
       <div className="d-flex justify-content-center align-items-center" style={{ height: "100svh" }}>
 
-        <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row gap-0 justify-content-center align-items-center" style={{ minHeight: "70svh", backgroundColor: "#fdfdfd" }}>
+        <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row gap-0 justify-content-center align-items-center" style={{ minHeight: "75svh", backgroundColor: "#fdfdfd", boxShadow: "0px 0px 10px 5px #888" }}>
           <div className="col-12"><Heading1 value={"BMI Calculator"} className='fs-3 fw-bold text-info text-center' /></div>
 
           <div className="col-4 pt-2"><Text value={"Gender"} /></div>

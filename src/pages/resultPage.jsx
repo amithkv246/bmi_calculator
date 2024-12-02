@@ -9,7 +9,7 @@ function ResultPage() {
   const location = useLocation();
   const { value } = location.state || {};
   const [result, setResult] = useState("");
-  const [color, setColor]= useState("black")
+  const [color, setColor] = useState("black")
 
   useEffect(() => {
     if (value < 18.5) {
@@ -38,10 +38,10 @@ function ResultPage() {
 
       <div className="d-flex justify-content-center align-items-center" style={{ height: "100svh" }}>
 
-        <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row" style={{ minHeight: "70svh", backgroundColor: "#fdfdfd", placeItems: "center" }}>
+        <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row" style={{ minHeight: "75svh", backgroundColor: "#fdfdfd", boxShadow: "0px 0px 10px 5px #888" }}>
           <div className='col-12 p-1'><div className='btn btn-light' onClick={handlenavigate}><i class="fa-solid fa-angle-left fa-xl" style={{ color: "#17cbf0" }}></i></div></div>
           <div className="col-12"><Heading1 value={"Your BMI Result"} className='fs-3 fw-bold text-info text-center' /></div>
-          <div className='col-12'><p style={{ textAlign: "justify" }}>Your body mass index according to metric system is <span className='fs-5' style={{color: color, fontWeight: 700}}>{value || "no value passed"}</span>.</p></div>
+          <div className='col-12'><p style={{ textAlign: "justify" }}>Your <strong>body mass index</strong> according to <strong>Metric System</strong> is <span className='fs-5' style={{ color: color, fontWeight: 700 }}>{value || "no value passed"}</span>.</p></div>
 
           <div className='col-5'>{result === "Under Weight" ? (<p className='text-start text-warning' style={{ fontSize: "1.2rem", fontWeight: "700" }}>&lt;&nbsp;18.5</p>) : (<p className='text-start fw-medium'>&lt;&nbsp;18.5</p>)}</div>
           <div className='col-1'>{result === "Under Weight" ? (<p className='text-center text-warning' style={{ fontSize: "1.2rem", fontWeight: "700" }}>-</p>) : (<p className='text-center'>-</p>)}</div>
