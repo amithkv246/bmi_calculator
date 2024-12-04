@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Text({ value }) {
+function Text({ value, uiColor }) {
     return (
         <>
-            <p className='fs-6 fw-medium text-info'>{value}</p>
+            <p className={`fs-6 fw-medium text-${uiColor}`}>{value}</p>
         </>
     );
 }

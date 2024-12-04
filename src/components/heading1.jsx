@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Heading1({ value, ...prop }) {
+function Heading1({ value,uiColor ,...prop }) {
     return (
         <>
-            <h1 {...prop}>{value}</h1>
+            <h1 {...prop} style={{color: uiColor}}>{value}</h1>
         </>
     );
 }

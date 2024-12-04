@@ -4,12 +4,14 @@ import Button from '../components/button';
 import { useLocation, useNavigate } from 'react-router';
 
 function ResultPage() {
-  const navigate = useNavigate();
-  const handlenavigate = () => navigate(-1);
-  const location = useLocation();
-  const { value } = location.state || {};
   const [result, setResult] = useState("");
   const [color, setColor] = useState("black")
+  const [uiColor, setUiColor]= useState("black");
+  const location = useLocation();
+  const { value, gender } = location.state || {};
+  const navigate = useNavigate();
+
+  const handlenavigate = () => navigate(-1);
 
   useEffect(() => {
     if (value < 18.5) {
@@ -33,14 +35,21 @@ function ResultPage() {
     }
   }, [result])
 
+  useEffect(()=>{
+    if (gender === "male") {
+      setUiColor("#17cbf0")
+    } else {
+      setUiColor("")
+    }
+  },[gender])
+
   return (
     <>
-
       <div className="d-flex justify-content-center align-items-center" style={{ height: "100svh" }}>
 
         <div className="w-25 border border-5 border-secondary-subtle rounded-4 p-2 grid row" style={{ minHeight: "75svh", backgroundColor: "#fdfdfd", boxShadow: "0px 0px 10px 5px #888" }}>
-          <div className='col-12 p-1'><div className='btn btn-light' onClick={handlenavigate}><i class="fa-solid fa-angle-left fa-xl" style={{ color: "#17cbf0" }}></i></div></div>
-          <div className="col-12"><Heading1 value={"Your BMI Result"} className='fs-3 fw-bold text-info text-center' /></div>
+          <div className='col-12 p-1'><div className='btn btn-light' onClick={handlenavigate}><i class="fa-solid fa-angle-left fa-xl" style={{ color: uiColor }}></i></div></div>
+          <div className="col-12"><Heading1 value={"Your BMI Result"} className='fs-3 fw-bold text-center' uiColor={uiColor}/></div>
           <div className='col-12'><p style={{ textAlign: "justify" }}>Your <strong>body mass index</strong> according to <strong>Metric System</strong> is <span className='fs-5' style={{ color: color, fontWeight: 700 }}>{value || "no value passed"}</span>.</p></div>
 
           <div className='col-5'>{result === "Under Weight" ? (<p className='text-start text-warning' style={{ fontSize: "1.2rem", fontWeight: "700" }}>&lt;&nbsp;18.5</p>) : (<p className='text-start fw-medium'>&lt;&nbsp;18.5</p>)}</div>
