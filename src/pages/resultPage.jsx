@@ -38,8 +38,16 @@ function ResultPage() {
   useEffect(()=>{
     if (gender === "male") {
       setUiColor("#17cbf0")
+      // document.p.classList.add("fgMale")
+      // document.p.classList.remove("fgFemale")
+      document.body.classList.add("bgMale")
+      document.body.classList.remove("bgFemale")
     } else {
       setUiColor("")
+      // document.p.classList.add("fgFemale")
+      // document.p.classList.remove("fgMale")
+      document.body.classList.add("bgFemale")
+      document.body.classList.remove("bgMale")
     }
   },[gender])
 
